@@ -1,0 +1,9 @@
+*.exe
+*.out
+out
+
+.ccls-cache
+.git
+.vscode
+.idea
+.vs
