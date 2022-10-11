@@ -67,6 +67,12 @@ void init_sieve(ll N) {
   }
 }
 
+ll floor_root(ll x) {
+  ll ans = sqrt(x) + 1;
+  while (ans * ans > x) ans--;
+  return ans;
+}
+
 //////////////////////////////////////////////////////////
 //  PRIME FACTORIZATION USING SIEVE
 /////////////////////////////////////////////////////////
