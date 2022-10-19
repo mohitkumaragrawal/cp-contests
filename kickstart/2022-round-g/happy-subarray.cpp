@@ -49,7 +49,7 @@ void solve(ll T) {
     // one more case missing; like 10 -3 -4 -5
 
     if (arr[left] + neg_sum >= 0) {
-      cout << "left = " << left << ", right = " << right << endl;
+      // cout << "left = " << left << ", right = " << right << endl;
       ans += calc_sum(left, right);
       _left = left;
       continue;
@@ -70,7 +70,7 @@ void solve(ll T) {
     }
 
     _left = left;
-    cout << "left = " << left << ", right = " << right << endl;
+    // cout << "left = " << left << ", right = " << right << endl;
     ans += calc_sum(left, right);
   }
 
