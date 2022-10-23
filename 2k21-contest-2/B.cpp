@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int sum(vector<int>& arr) {
+int sum(vector<int> &arr) {
   int res = 0;
-  for (int i : arr) res += i;
+  for (int i : arr)
+    res += i;
   return res;
 }
 
@@ -16,7 +17,8 @@ int main() {
     cin >> N;
 
     vector<int> arr(N);
-    for (int& i : arr) cin >> i;
+    for (int &i : arr)
+      cin >> i;
 
     vector<int> pos, neg;
     int zero_cnt = 0;

@@ -13,7 +13,8 @@ int main() {
     ll N;
     cin >> N;
     vector<ll> arr(N);
-    for (ll& i : arr) cin >> i;
+    for (ll &i : arr)
+      cin >> i;
 
     sort(arr.begin(), arr.end());
     ll ans = 0;
@@ -21,7 +22,8 @@ int main() {
 
     for (ll i = 1; i < N; ++i) {
       ll q = arr[i] / key;
-      if (arr[i] % key != 0) q++;
+      if (arr[i] % key != 0)
+        q++;
       ans += (q - 1);
     }
 
