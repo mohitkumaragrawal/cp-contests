@@ -39,7 +39,7 @@ void solve() {
     ll val = calc_val(left, right);
 
     int left_removal_count = 0;
-    ll ans_l = jmp[left] > right ? right : jmp[left], ans_r = right;
+    ll ans_l = min(jmp[left], right), ans_r = right;
 
     for (ll l = jmp[left]; l <= right; l = jmp[l + 1]) {
       if (left_removal_count >= 32) break;

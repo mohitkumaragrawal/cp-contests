@@ -1,4 +1,13 @@
 #include <bits/stdc++.h>
+using namespace std;
+
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+// template <typename T, typename ComparatorFn = less<T>>
+// using ordered_set = tree<T, null_type, ComparatorFn, rb_tree_tag,
+//                          tree_order_statistics_node_update>;
+
 #define all(x) begin(x), end(x)
 #define OUT(T) cout << "Case #" << T << ": "
 
@@ -7,18 +16,17 @@ using ll = long long;
 using ull = unsigned long long;
 const ll MOD = 1e9 + 7;
 
-// In debug mode show some additional information;
-#define endl '\n'
 #ifdef _DEBUG
-#define display cout << "\033[1;31m* (" << __LINE__ << "):\033[0m "
-#define LOG(x) display << x << endl
-#define _MC_(x) #x "=" << x << "\t"
-#define DEBUG(x) display << _MC_(x) << endl
-#define DEBUG2(x, y) display << _MC_(x) << _MC_(y) << endl
-#define DEBUG3(x, y, z) display << _MC_(x) << _MC_(y) << _MC_(z) << endl
-#define DEBUG4(x, y, z, w) display << _MC_(x) << _MC_(y) << _MC_(z) << _MC_(w) << endl;
+#define __dis cout << "\033[1;31m* (" << __LINE__ << "):\033[0m "
+#define LOG(x) __dis << x << endl
+#define __m(x) #x "=" << x << "\t"
+#define DEBUG(x) __dis << __m(x) << endl
+#define DEBUG2(x, y) __dis << __m(x) << __m(y) << endl
+#define DEBUG3(x, y, z) __dis << __m(x) << __m(y) << __m(z) << endl
+#define DEBUG4(x, y, z, w) \
+  __dis << __m(x) << __m(y) << __m(z) << __m(w) << endl;
 #else
-#define display cout
+#define endl '\n'
 #define LOG(x)
 #define DEBUG(x)
 #define DEBUG2(x, y)
@@ -26,8 +34,17 @@ const ll MOD = 1e9 + 7;
 #define DEBUG4(x, y, z, w)
 #endif
 
+void solve() {}
 
-int main() { 
+int main() {
   ios_base::sync_with_stdio(false), cin.tie(NULL);
 
+  // ll T;
+  // cin >> T;
+  // LOG("testcases " << T);
+  // while (T--) {
+  //   solve();
+  // }
+
+  solve();
 }
