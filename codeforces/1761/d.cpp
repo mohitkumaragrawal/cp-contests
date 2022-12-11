@@ -4,6 +4,7 @@ using ll = long long;
 
 const ll MOD = 1e9 + 7;
 ll binexp(ll a, ll b, ll p = MOD) {
+  if (b < 0) return 0;
   ll res = 1;
   while (b > 0) {
     if (b & 1) b--, res = (res * a) % p;
@@ -62,6 +63,18 @@ struct MODINT_ {
   }
   MODINT_ operator/(ll b) { return MODINT_(value * modinv(b, mod)); }
 };
+template <ll mod>
+ostream& operator<<(ostream& out, const MODINT_<mod>& m) {
+  out << m.value % mod;
+  return out;
+}
+template <ll mod>
+istream& operator>>(istream& in, MODINT_<mod>& m) {
+  ll x;
+  in >> x;
+  m.value = (x % mod);
+  return in;
+}
 using MODINT = MODINT_<MOD>;
 vector<MODINT> factorial;
 void init_factorial() {
@@ -72,49 +85,32 @@ void init_factorial() {
   }
 }
 inline MODINT choose(const MODINT& a, const MODINT& b) {
+  if (a.value < b.value) return 0;
   return factorial[a.value] /
          (factorial[b.value] * factorial[(a.value - b.value)]);
 }
 
-vector<bool> is_prime;
-void init_is_prime(ll N = 200005) {
-  is_prime.assign(N + 1, true);
-  is_prime[0] = is_prime[1] = false;
-  for (ll i = 2; i <= N; ++i) {
-    if (!is_prime[i]) continue;
-    for (ll j = i * i; j <= N; j += i) {
-      is_prime[j] = false;
-    }
+void solve() {
+  ll n, k;
+  cin >> n >> k;
+  if (k == 0) {
+    cout << binexp(3, n) << endl;
+    return;
   }
+
+  MODINT ans = 0;
+  ll max_seg = min(n + 1, 2 * k + 1);
+  for (ll s = 2; s <= max_seg; ++s) {
+    ll z = (s + 1) / 2;
+    ll o = s / 2;
+    ans += choose(n - k, z - 1) * choose(k - 1, o - 1) * binexp(3, n - (s - 1));
+  }
+
+  cout << ans << endl;
 }
 
-vector<ll> sieve;
-void init_sieve(ll N = 200005) {
-  sieve.resize(N + 1);
-  for (ll i = 1; i <= N; ++i) {
-    sieve[i] = i;
-  }
-  for (ll i = 2; i * i <= N; ++i) {
-    if (sieve[i] != i) continue;
-    for (ll j = i * i; j <= N; j += i) {
-      if (sieve[j] == j) sieve[j] = i;
-    }
-  }
+int main() {
+  ios_base::sync_with_stdio(false), cin.tie(NULL);
+  init_factorial();
+  solve();
 }
-
-vector<ll> fact;
-void init_fact(ll mod, ll N = 200005) {
-  fact.resize(N + 1);
-  fact[0] = 1;
-  for (ll i = 1; i <= N; ++i) {
-    fact[i] = (fact[i - 1] * i) % mod;
-  }
-}
-
-ll floor_root(ll x) {
-  ll ans = sqrt(x) + 1;
-  while (ans * ans > x) ans--;
-  return ans;
-}
-
-int main() {}

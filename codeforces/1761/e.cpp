@@ -1,9 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+#define all(x) begin(x), end(x)
+#define OUT(T) cout << "Case #" << T << ": "
 using ll = long long;
+using ull = unsigned long long;
 
 const ll MOD = 1e9 + 7;
 ll binexp(ll a, ll b, ll p = MOD) {
+  if (b < 0) return 0;
   ll res = 1;
   while (b > 0) {
     if (b & 1) b--, res = (res * a) % p;
@@ -12,8 +17,8 @@ ll binexp(ll a, ll b, ll p = MOD) {
   }
   return res;
 }
-inline ll modinv(ll x, ll p = MOD) { return binexp(x, p - 2, p); }
 
+inline ll modinv(ll x, ll p = MOD) { return binexp(x, p - 2, p); }
 template <ll mod>
 struct MODINT_ {
   ll value;
@@ -62,6 +67,18 @@ struct MODINT_ {
   }
   MODINT_ operator/(ll b) { return MODINT_(value * modinv(b, mod)); }
 };
+template <ll mod>
+ostream& operator<<(ostream& out, const MODINT_<mod>& m) {
+  out << m.value % mod;
+  return out;
+}
+template <ll mod>
+istream& operator>>(istream& in, MODINT_<mod>& m) {
+  ll x;
+  in >> x;
+  m.value = (x % mod);
+  return in;
+}
 using MODINT = MODINT_<MOD>;
 vector<MODINT> factorial;
 void init_factorial() {
@@ -72,49 +89,19 @@ void init_factorial() {
   }
 }
 inline MODINT choose(const MODINT& a, const MODINT& b) {
+  if (a.value < b.value) return 0;
   return factorial[a.value] /
          (factorial[b.value] * factorial[(a.value - b.value)]);
 }
 
-vector<bool> is_prime;
-void init_is_prime(ll N = 200005) {
-  is_prime.assign(N + 1, true);
-  is_prime[0] = is_prime[1] = false;
-  for (ll i = 2; i <= N; ++i) {
-    if (!is_prime[i]) continue;
-    for (ll j = i * i; j <= N; j += i) {
-      is_prime[j] = false;
-    }
-  }
-}
+void solve() {}
 
-vector<ll> sieve;
-void init_sieve(ll N = 200005) {
-  sieve.resize(N + 1);
-  for (ll i = 1; i <= N; ++i) {
-    sieve[i] = i;
-  }
-  for (ll i = 2; i * i <= N; ++i) {
-    if (sieve[i] != i) continue;
-    for (ll j = i * i; j <= N; j += i) {
-      if (sieve[j] == j) sieve[j] = i;
-    }
-  }
-}
+int main() {
+  ios_base::sync_with_stdio(false), cin.tie(NULL);
 
-vector<ll> fact;
-void init_fact(ll mod, ll N = 200005) {
-  fact.resize(N + 1);
-  fact[0] = 1;
-  for (ll i = 1; i <= N; ++i) {
-    fact[i] = (fact[i - 1] * i) % mod;
-  }
-}
+  // ll T;
+  // cin >> T;
+  // while (T--) solve();
 
-ll floor_root(ll x) {
-  ll ans = sqrt(x) + 1;
-  while (ans * ans > x) ans--;
-  return ans;
+  solve();
 }
-
-int main() {}
