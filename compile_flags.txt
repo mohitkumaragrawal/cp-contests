@@ -4,4 +4,4 @@
 -Wall
 -Wextra
 -Wshadow
-
+-Wno-sign-compare
