@@ -13,7 +13,30 @@ void solve() {
   cin >> n;
 
   if (n % 2 == 1) {
-    cout << "NO\n";
+    // n = 2 k + 1;
+    // x y x y x y x
+    // (k + 1) x + k y = x + y
+    // k x + (k - 1) y = 0
+    // y = - k x / (k - 1)
+    // x = k-1;
+    // y = -k
+
+    ll k = (n - 1) / 2;
+    ll x = k - 1;
+    ll y = -k;
+
+    if (x == 0 || y == 0) {
+      cout << "NO\n";
+      return;
+    }
+
+    cout << "YES\n";
+    ll itr = x;
+    for (ll i = 1; i <= n; ++i) {
+      cout << itr << " ";
+      itr = (itr == x) ? y : x;
+    }
+    cout << '\n';
     return;
   }
 

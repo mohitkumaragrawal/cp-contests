@@ -19,37 +19,37 @@ void solve() {
   ll ops = 0;
   ll sum = 0;
 
-  set<ll, greater<ll>> mx_set;
+  multiset<ll, greater<ll>> mx_set;
 
   for (ll i = m; i > 0; --i) {
     sum += a[i];
     mx_set.insert(a[i]);
 
-    if (sum > 0) {
+    while (sum > 0) {
       ops++;
 
       ll mx = *mx_set.begin();
       sum -= 2 * mx;
 
-      mx_set.erase(mx);
+      mx_set.erase(mx_set.find(mx));
       mx_set.insert(-mx);
     }
   }
 
   ll sum2 = sum;
 
-  set<ll> mn_set;
+  multiset<ll> mn_set;
 
   for (ll i = m + 1; i < n; ++i) {
     sum2 += a[i];
     mn_set.insert(a[i]);
 
-    if (sum2 < sum) {
+    while (sum2 < sum) {
       ops++;
 
       ll mn = *mn_set.begin();
       sum2 -= 2 * mn;
-      mn_set.erase(mn);
+      mn_set.erase(mn_set.find(mn));
       mn_set.insert(-mn);
     }
   }
