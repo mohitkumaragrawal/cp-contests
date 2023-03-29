@@ -8,6 +8,16 @@ using lld = long double;
 using pll = pair<ll, ll>;
 using pii = pair<int, int>;
 
+// MISTAKE:
+// used set, which removed the duplicate elements :)
+// solution:
+//  use multiset: when you are querying for maximum or minimum value on the
+//  processed elements; careful when using multiset::erase method as it erase
+//  all the occurence of that element; instead use
+//  multiset::erase(multiset::find(element)) thing
+//
+//  GOOD THING: I had the right idea;
+
 void solve() {
   ll n, m;
   cin >> n >> m;
@@ -25,7 +35,7 @@ void solve() {
     sum += a[i];
     mx_set.insert(a[i]);
 
-    while (sum > 0) {
+    if (sum > 0) {
       ops++;
 
       ll mx = *mx_set.begin();
@@ -44,7 +54,7 @@ void solve() {
     sum2 += a[i];
     mn_set.insert(a[i]);
 
-    while (sum2 < sum) {
+    if (sum2 < sum) {
       ops++;
 
       ll mn = *mn_set.begin();

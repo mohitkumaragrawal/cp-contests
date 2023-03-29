@@ -11,6 +11,12 @@ using pii = pair<int, int>;
 ll n, m, a[200005], b[200005];
 ll tree[200005 * 4];
 
+// MISTAKE: there was no need to implement lazy propagation :) instead just see
+// where the elements are not equal and then do razors on them instead of the
+// whole array;
+//
+// GOOD THING: I had the right idea;
+
 ll build_tree(ll* arr, ll i, ll tl, ll tr) {
   if (tl == tr) {
     return tree[i] = arr[tl];
